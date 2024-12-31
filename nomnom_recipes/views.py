@@ -35,3 +35,13 @@ def add_recipe(req):
       return redirect('/add_recipe')
   else:
     return redirect('/accounts/signin')
+
+def delete_recipe(req, id):
+  Recipe = Recipe.objects.get(id=id)
+  if req.user.is_authenticated:
+    if Recipe.user.id != req.user.id:
+        messages.error(req, "YOU CAN NOT DELETE A RECIPE THAT IS NOT YOURS!")
+        return redirect('/add_recipe')
+    Recipe = Recipe.objects.get(id=id)
+    Recipe.delete()
+  return redirect('/add_recipe')
