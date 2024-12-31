@@ -7,6 +7,13 @@ from django.contrib import messages
 from .models import Recipe
 User = get_user_model()
 
+def my_recipes(req):
+  if req.user.is_authenticated:
+    recipes = Recipe.objects.filter(user=req.user.id)
+    return render(req, 'recipe/my_recipes.html', {'recipes': recipes})
+  else:
+    return redirect('/accounts/signin')
+
 def add_recipe(req):
   if req.user.is_authenticated:
     post_data = {
