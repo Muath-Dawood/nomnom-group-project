@@ -30,7 +30,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'nomnom_auth',
-    'nomnom_recipies'
+    'nomnom_recipes'
 ]
 
 MIDDLEWARE = [
