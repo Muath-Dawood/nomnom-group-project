@@ -30,7 +30,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'nomnom_auth',
-    'nomnom_recipies'
+    'nomnom_recipes'
 ]
 
 MIDDLEWARE = [
@@ -48,7 +48,7 @@ ROOT_URLCONF = 'nomnom.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [f'{BASE_DIR}/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -108,7 +108,21 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+if DEBUG:
+    STATICFILES_DIRS = [
+        BASE_DIR / "static",
+    ]
+    STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+
+# Media files
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Base directory/media
+MEDIA_URL = 'media/'  # URL to access media files
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# my csutom user model to use email instead of username
+AUTH_USER_MODEL = 'nomnom_auth.User'
