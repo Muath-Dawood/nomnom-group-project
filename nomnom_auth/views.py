@@ -16,7 +16,7 @@ class LoginView(auth_views.LoginView):
         return reverse_lazy('recipes_my_recipes')
 
 class SignupView(FormView):
-    template_name = 'auth/register.html'
+    template_name = 'auth/registration.html'
     form_class = SignupForm
     success_url = reverse_lazy('auth_login')
 
