@@ -1,3 +1,64 @@
 /* :root {
   --bs-primary: #000000
 } */
+
+
+/* General Body Styles */
+body {
+  background-color: #2a526b;
+  /* Blue background for the entire page */
+  font-family: Arial, sans-serif;
+}
+
+/* Hero Section Styling */
+.hero-section {
+  background-color: #2a526b;
+  /* Blue background */
+  color: #ffffff;
+  /* White text */
+  padding: 60px 20px;
+}
+
+/* Navbar Styles */
+.navbar-dark .navbar-brand,
+.navbar-dark .nav-link {
+  color: #ffffff;
+  /* White text */
+}
+
+.navbar-dark .form-control {
+  border: none;
+  border-radius: 20px;
+  background-color: #ffffff;
+  /* White search box */
+  color: #2a526b;
+  /* Blue text */
+}
+
+/* Button Styling */
+.btn-warning {
+  background-color: #f4b75d;
+  /* Orange button */
+  border: none;
+  color: #ffffff;
+  /* Blue text */
+  font-weight: bold;
+}
+
+
+.white-icon {
+  color: #ffffff;
+  /* White color for icons */
+  font-size: 20px;
+  /* Adjust the size */
+  transition: color 0.3s ease;
+}
+
+.white-icon:hover {
+  color: #f4b75d;
+  /* Orange color on hover */
+}
+
+.container {
+  color: #ffffff;
+}
