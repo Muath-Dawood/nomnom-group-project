@@ -45,3 +45,10 @@ def delete_recipe(req, id):
     Recipe = Recipe.objects.get(id=id)
     Recipe.delete()
   return redirect('/add_recipe')
+
+def show_recipe(req, id):
+  if req.user.is_authenticated:
+    recipe = Recipe.objects.get(id=id)
+    return render(req, 'recipe/show_recipe.html', {'recipe': recipe})
+  else:
+    return redirect('/accounts/signin')
