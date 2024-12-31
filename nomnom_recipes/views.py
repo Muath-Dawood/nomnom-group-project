@@ -59,3 +59,42 @@ def show_recipe(req, id):
     return render(req, 'recipe/show_recipe.html', {'recipe': recipe})
   else:
     return redirect('/accounts/signin')
+
+def edit_recipe(req, id):
+  recipe = Recipe.objects.get(id=id)
+  if req.user.is_authenticated:
+    if recipe.user.id != req.user.id:
+      messages.error(req, "YOU CAN NOT EDIT A RECIPE THAT IS NOT YOURS!")
+      return redirect('/edit_recipe')
+    if req.method == 'GET':
+      context = {
+      'recipe': recipe.objects.get(id=id)
+      }
+      return render(req, 'recipe/edit_recipe.html', context)
+    if req.method == 'POST':
+      post_data = {
+        'title': req.POST['title'],
+        'description': req.POST['description'],
+        'ingredients': req.POST['ingredients'],
+        'instructions': req.POST['instructions'],
+        'image': req.POST['image']
+      }
+      errors = Recipe.objects.validate_recipe_data(post_data)
+      try:
+        if len(errors):
+          for value in errors.values():
+            messages.error(req, value)
+          raise ValueError("Messing form fields!")
+        for attr in post_data:
+          if hasattr(recipe, attr):
+            setattr(recipe, attr, post_data[attr])
+        recipe.save()
+      except IntegrityError:
+        messages.error(req, "Name already exists!")
+        return redirect('/edit_recipe')
+      except ValueError:
+        return redirect('/edit_recipe')
+      else:
+        return redirect('/edit_recipe')
+  else:
+    return redirect('/accounts/signin')
