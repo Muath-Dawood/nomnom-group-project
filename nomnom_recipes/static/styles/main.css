@@ -1,3 +1,186 @@
 /* :root {
   --bs-primary: #000000
 } */
+
+
+/* General Body Styles */
+body {
+  background-color: #2a526b;
+  /* Blue background for the entire page */
+  font-family: Arial, sans-serif;
+}
+
+/* Hero Section Styling */
+.hero-section {
+  background-color: #2a526b;
+  /* Blue background */
+  color: #ffffff;
+  /* White text */
+  padding: 60px 20px;
+}
+
+/* Navbar Styles */
+.navbar-dark .navbar-brand,
+.navbar-dark .nav-link {
+  color: #ffffff;
+  /* White text */
+}
+
+.navbar-dark .form-control {
+  border: none;
+  border-radius: 20px;
+  background-color: #ffffff;
+  /* White search box */
+  color: #2a526b;
+  /* Blue text */
+}
+
+/* Button Styling */
+.btn-warning {
+  background-color: #f4b75d;
+  /* Orange button */
+  border: none;
+  color: #ffffff;
+  /* Blue text */
+  font-weight: bold;
+}
+
+
+.white-icon {
+  color: #ffffff;
+  /* White color for icons */
+  font-size: 20px;
+  /* Adjust the size */
+  transition: color 0.3s ease;
+}
+
+.white-icon:hover {
+  color: #f4b75d;
+  /* Orange color on hover */
+}
+
+.container {
+  color: #ffffff;
+}
+
+
+/* Section Styling */
+.about-section {
+  padding: 50px 20px;
+  background-color: #2a526b;
+}
+
+.about-section h1 {
+  color: #f4b75d;
+  /* Orange for headings */
+  font-weight: bold;
+}
+
+.about-section p {
+  line-height: 1.8;
+}
+
+/* Team Section */
+.team-card {
+  background-color: #ffffff;
+  /* White card */
+  color: #2a526b;
+  /* Blue text */
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  text-align: center;
+}
+
+.team-card img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 15px;
+}
+
+.team-card h5 {
+  color: #f4b75d;
+  /* Orange for names */
+  font-weight: bold;
+}
+
+.team-card p {
+  font-size: 14px;
+}
+
+.register-container {
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  /* White card */
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.register-container h2 {
+  color: #2a526b;
+  /* Blue text for heading */
+  font-weight: bold;
+}
+
+.btn-register {
+  background-color: #f4b75d;
+  /* Orange button */
+  color: #ffffff;
+  font-weight: bold;
+  width: 100%;
+}
+
+.btn-register:hover {
+  background-color: #e6a34c;
+}
+
+.form-control {
+  background-color: #f7f7f7;
+  border: 1px solid #ccc;
+}
+
+.form-control:focus {
+  border-color: #f4b75d;
+  box-shadow: 0 0 4px rgba(244, 183, 93, 0.8);
+}
+
+.text-link {
+  color: #f4b75d;
+  text-decoration: none;
+}
+
+.text-link:hover {
+  text-decoration: underline;
+}
+
+.login-container {
+  max-width: 400px;
+  margin: 100px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  /* White card */
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.login-container h2 {
+  color: #2a526b;
+  /* Blue text for heading */
+  font-weight: bold;
+}
+
+.btn-login {
+  background-color: #f4b75d;
+  /* Orange button */
+  color: #ffffff;
+  font-weight: bold;
+  width: 100%;
+}
+
+.btn-login:hover {
+  background-color: #e6a34c;
+}

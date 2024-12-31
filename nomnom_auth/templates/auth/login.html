@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="login-container">
+    <h2 class="text-center mb-4">Login</h2>
+    <form>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email Address</label>
+            <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" placeholder="Enter your password" required>
+        </div>
+        <button type="submit" class="btn btn-login">Login</button>
+    </form>
+    <div class="text-center mt-3">
+        <p>Don't have an account? <a href="./registration_form.html" class="text-link">Sign up</a></p>
+    </div>
+</div>
+{% endblock content %}
