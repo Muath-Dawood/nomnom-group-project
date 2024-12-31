@@ -2,15 +2,51 @@
 
 {% block content %}
 
-    <!-- About Section -->
-    <section class="about-section text-center">
-        <div class="container">
-            <h1>About Us</h1>
-            <p class="mt-4">
-                Welcome to <strong>Nom Nom</strong>, a platform where food enthusiasts connect, share, and inspire each other. 
-                Our mission is to create a vibrant community of passionate home cooks and culinary adventurers. Whether you're 
-                here to share your favorite recipes or discover new dishes, Nom Nom is your ultimate food destination.
-            </p>
+<!-- About Section -->
+<section class="about-section text-center">
+    <div class="container">
+        <h1>About Us</h1>
+        <p class="mt-4">
+            Welcome to <strong>Nom Nom</strong>, a platform where food enthusiasts connect, share, and inspire each
+            other.
+            Our mission is to create a vibrant community of passionate home cooks and culinary adventurers. Whether
+            you're
+            here to share your favorite recipes or discover new dishes, Nom Nom is your ultimate food destination.
+        </p>
+    </div>
+</section>
+
+<!-- Team Section -->
+<section class="text-center py-5" style="background-color: #ffffff; color: #2a526b;">
+    <div class="container">
+        <h2 class="mb-5" style="color: #f4b75d;">Meet Our Team</h2>
+        <div class="row">
+            <!-- Team Member 1 -->
+            <div class="col-md-4 mb-4">
+                <div class="team-card">
+                    <img src="./team1.jpg" alt="Team Member">
+                    <h5>Aseel Khzaimiah</h5>
+                    <p>Full Stack Developer</p>
+                </div>
+            </div>
+            <!-- Team Member 2 -->
+            <div class="col-md-4 mb-4">
+                <div class="team-card">
+                    <img src="./team2.jpg" alt="Team Member">
+                    <h5>Basel Sa’ad</h5>
+                    <p>Front-End Specialist</p>
+                </div>
+            </div>
+            <!-- Team Member 3 -->
+            <div class="col-md-4 mb-4">
+                <div class="team-card">
+                    <img src="./team3.jpg" alt="Team Member">
+                    <h5>Muath Dawood</h5>
+                    <p>Back-End Specialist</p>
+                </div>
+            </div>
         </div>
-    </section>
-    {% endblock content %}
+    </div>
+</section>
+
+{% endblock content %}
