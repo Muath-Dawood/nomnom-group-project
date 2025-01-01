@@ -15,14 +15,14 @@ class RecipeManager(models.Manager):
       errors['no_instructions'] = "You must fill the instructions field!"
     return errors
   
-  class ReviewManager(models.Manager):
-    def validate_review_data(self, post_data):
-        errors = {}
-        if 'rating' not in post_data or not (1 <= int(post_data['rating']) <= 5):
-            errors['invalid_rating'] = "Rating must be an integer between 1 and 5."
-        if 'comment' in post_data and len(post_data['comment']) > 500:
-            errors['long_comment'] = "Comment must be 500 characters or fewer."
-        return errors
+class ReviewManager(models.Manager):
+  def validate_review_data(self, post_data):
+    errors = {}
+    if 'rating' not in post_data or not (1 <= int(post_data['rating']) <= 5):
+      errors['invalid_rating'] = "Rating must be an integer between 1 and 5."
+    if 'comment' in post_data and len(post_data['comment']) > 500:
+      errors['long_comment'] = "Comment must be 500 characters or fewer."
+    return errors
 
 
 class Recipe(models.Model):
@@ -34,6 +34,8 @@ class Recipe(models.Model):
     created_by = models.ForeignKey(User, on_delete=models.CASCADE,related_name="recipes")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    
+    objects = RecipeManager()
     
     def average_rating(self):
         reviews = self.reviews.objects.all()
