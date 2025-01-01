@@ -252,3 +252,67 @@ body {
   background-color: #f4b75d;
   /* Orange on hover */
 }
+
+
+
+/* add recipe styleing  */
+.container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border: 2px solid #f4b75d; /* Orange border */
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.container h2 {
+  color: #2a526b; /* Blue text */
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #2a526b; /* Blue text */
+}
+
+.form-group input, 
+.form-group textarea, 
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  color: #2a526b; /* Blue text */
+}
+
+.form-group textarea {
+  height: 100px;
+}
+
+.form-group button {
+  background-color: #2a526b; /* Blue button */
+  color: #ffffff; /* White text */
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.form-group button:hover {
+  background-color: #f4b75d; /* Orange on hover */
+}
+
+.form-group .small-text {
+  font-size: 0.9rem;
+  color: #777;
+}
