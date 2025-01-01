@@ -5,6 +5,7 @@ from django.db import IntegrityError
 from django.contrib import messages
 
 from .models import Recipe
+from .models import Review
 User = get_user_model()
 
 def index(req):
@@ -49,7 +50,8 @@ def delete_recipe(req, id):
 def show_recipe(req, id):
   if req.user.is_authenticated:
     recipe = Recipe.objects.get(id=id)
-    return render(req, 'recipe/show_recipe.html', {'recipe': recipe})
+    reviews = recipe.reviews.all()
+    return render(req, 'recipe/show_recipe.html', {'recipe': recipe, 'reviews': reviews})
   else:
     return redirect('/auth/login')
 
@@ -82,6 +84,30 @@ def edit_recipe(req, id):
             if hasattr(recipe, attr):
                 setattr(recipe, attr, post_data[attr])
         recipe.save()
+        return redirect(f'/recipes/{recipe.id}')
+    else:
+        return redirect('/auth/login')
+      
+def add_review(req, id):
+    if req.user.is_authenticated:
+        recipe = Recipe.objects.get(id=id)
+        post_data = {
+            'rating': req.POST['rating'],
+            'comment': req.POST['comment'],
+        }
+        errors = Review.objects.validate_review_data(post_data)
+        if errors:
+            for value in errors.values():
+                messages.error(req, value)
+            return redirect(f'/recipes/{recipe.id}')
+        new_review = Review.objects.create(
+            recipe=recipe,
+            reviewer=req.user,
+            rating=post_data['rating'],
+            comment=post_data['comment']
+        )
+        new_review.save()
+        messages.success(req, "Your review has been added successfully.")
         return redirect(f'/recipes/{recipe.id}')
     else:
         return redirect('/auth/login')
