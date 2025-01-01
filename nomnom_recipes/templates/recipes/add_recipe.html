@@ -10,5 +10,42 @@
 
 
 
+<div class="container">
+    <h2>Recipe Details</h2>
+    <form>
+        <div class="form-group">
+            <label for="recipe-name">Recipe Name</label>
+            <input type="text" id="recipe-name" placeholder="Enter the recipe name" required>
+        </div>
+        
+
+        <div class="form-group">
+            <label for="recipe-description">Description</label>
+            <textarea id="recipe-description" placeholder="Write a short description of the recipe"></textarea>
+        </div>
+        
+        <div class="form-group">
+            <label for="ingredients">Ingredients</label>
+            <textarea id="ingredients" placeholder="List ingredients separated by commas"></textarea>
+        </div>
+        
+        <div class="form-group">
+            <label for="instructions">Instructions</label>
+            <textarea id="instructions" placeholder="Describe the cooking steps"></textarea>
+        </div>
+        
+        <div class="form-group">
+            <label for="image-upload">Upload Image</label>
+            <input type="file" id="image-upload" accept="image/*">
+            <p class="small-text">Max file size: 2MB</p>
+        </div>
+        
+        <div class="form-group">
+            <button type="submit">Submit Recipe</button>
+        </div>
+    </form>
+</div>
+
+
 
 {% endblock content %}
