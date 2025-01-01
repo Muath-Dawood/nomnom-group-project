@@ -111,3 +111,35 @@ def add_review(req, id):
         return redirect(f'/recipes/{recipe.id}')
     else:
         return redirect('/auth/login')
+      
+def edit_review(req, review_id):
+    review = Review.objects.get(id=review_id)
+    if req.user.is_authenticated:
+        if review.reviewer.id != req.user.id:
+            messages.error(req, "YOU CANNOT EDIT A REVIEW THAT IS NOT YOURS!")
+            return redirect(f'/recipes/{review.recipe.id}')
+
+        if req.method == 'GET':
+            context = {
+                'review': review
+            }
+            return render(req, 'reviews/edit_review.html', context)
+          
+        if req.method == 'POST':
+            post_data = {
+                'rating': req.POST['rating'],
+                'comment': req.POST['comment']
+            }
+            errors = Review.objects.validate_review_data(post_data)
+            if len(errors):
+                for value in errors.values():
+                    messages.error(req, value)
+                return redirect(f'/review/{review.id}/edit/')
+            for attr in post_data:
+              if hasattr(review, attr):
+                setattr(review, attr, post_data[attr])
+            review.save()
+            messages.success(req, "Your review has been updated successfully.")
+            return redirect(f'/recipes/{review.recipe.id}')
+    else:
+        return redirect('/auth/login')
