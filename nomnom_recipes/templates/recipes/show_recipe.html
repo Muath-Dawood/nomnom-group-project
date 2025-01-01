@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<div class="header">
+    <h1>Recipe Details</h1>
+</div>
+
+<div class="container">
+    <div class="recipe-header">
+        <img src="./pic/cheesecake.jpg" alt="Recipe Image" class="recipe-image">
+        <h2 class="recipe-title">Cheesecake</h2>
+    </div>
+
+    <h3 class="section-title">Description</h3>
+    <p class="recipe-description">A rich and creamy dessert made with a buttery biscuit crust and smooth cream cheese filling.</p>
+    
+    <h3 class="section-title">Ingredients</h3>
+    <div class="recipe-ingredients">
+        <ul>
+            <li>200g digestive biscuits</li>
+            <li>100g butter</li>
+            <li>300g cream cheese</li>
+            <li>100g sugar</li>
+            <li>1 tsp vanilla extract</li>
+        </ul>
+    </div>
+
+    <h3 class="section-title">Instructions</h3>
+    <div class="recipe-instructions">
+        <ol>
+            <li>Crush the biscuits and mix with melted butter to form the crust.</li>
+            <li>Press the crust into a pan and chill.</li>
+            <li>Mix cream cheese, sugar, and vanilla until smooth.</li>
+            <li>Pour the mixture over the crust and chill until set.</li>
+            <li>Serve and enjoy!</li>
+        </ol>
+    </div>
+
+    <h3 class="section-title">Rate this Recipe</h3>
+    <div class="rating">
+        <span>Your Rating:</span>
+        <input type="radio" name="rating" value="1"> 1
+        <input type="radio" name="rating" value="2"> 2
+        <input type="radio" name="rating" value="3"> 3
+        <input type="radio" name="rating" value="4"> 4
+        <input type="radio" name="rating" value="5"> 5
+    </div>
+
+    <div class="review-section">
+        <h3 class="section-title">Reviews</h3>
+
+        <div class="review">
+            <h4>John Doe</h4>
+            <p>Absolutely delicious! The perfect cheesecake recipe.</p>
+        </div>
+
+        <div class="review">
+            <h4>Jane Smith</h4>
+            <p>Super creamy and easy to make. Highly recommend!</p>
+        </div>
+
+        <div class="add-review">
+            <h4>Add Your Review:</h4>
+            <textarea placeholder="Write your review here..." rows="4"></textarea>
+            <button>Submit Review</button>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
