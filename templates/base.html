@@ -32,8 +32,8 @@
                 </form>
             </div>
             {% if user.is_authenticated %}
-            <img src="{% static 'images/profile_pic/{{user.profile_pic}}' %}" alt="profile_pic" class="profile_pic" id="profile_pic" />
-            <ul class="navbar_user_depeneded">
+            <div class="navbar_user_depeneded">
+                <img src="{% static 'images/profile_pic/{{user.profile_pic}}' %}" alt="profile_pic" class="profile_pic" id="profile_pic" />
                 <ul class="dropdown-menu" id="dropdown-menu">
                     <li class="nav_user_name"><span>{{ user.first_name }}</span></li>
                     <li><a href="{% url 'personal_profile' %}">My Profile</a></li> <!--we need to add some needed feathers for this -->
@@ -44,16 +44,17 @@
                         </form>
                     </li>
                 </ul>
-                {% else %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'auth_login' %}">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'auth_register' %}">Signup</a>
-                </li>
-                {% endif %}
+            </div>
+            {% else %}
+            <ul>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'auth_login' %}">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'auth_register' %}">Signup</a>
+            </li>
+            {% endif %}
             </ul>
-        </div>
         </div>
     </nav>
 
