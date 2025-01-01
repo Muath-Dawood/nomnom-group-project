@@ -2,6 +2,20 @@ from django.db import models
 from django.contrib.auth import get_user_model
 User = get_user_model()
 
+class RecipeManager(models.Manager):
+  def validate_recipe_data(self, post_data):
+    errors = {}
+    if not post_data['title']:
+      errors['no_title'] = "You must fill the Title field!"
+    if not post_data['description']:
+      errors['no_description'] = "You must fill the Description field!"
+    if not post_data['ingredients']:
+      errors['no_ingredients'] = "You must fill the Ingredients field!"
+    if not post_data['instructions']:
+      errors['no_instructions'] = "You must fill the instructions field!"
+    return errors
+
+
 class Recipe(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
