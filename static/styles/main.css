@@ -184,3 +184,71 @@ body {
 .btn-login:hover {
   background-color: #e6a34c;
 }
+
+
+.recipes-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.recipe-card {
+  background-color: #ffffff;
+  /* White background for cards */
+  border: 2px solid #f4b75d;
+  /* Orange border */
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.recipe-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.recipe-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.recipe-card .content {
+  padding: 15px;
+}
+
+.recipe-card h3 {
+  margin: 0 0 10px;
+  font-size: 1.5rem;
+  color: #2a526b;
+
+}
+
+.recipe-card p {
+  margin: 0 0 10px;
+  color: #2a526b;
+
+}
+
+.recipe-card a {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 15px;
+  background-color: #f4b75d;
+  /* Blue for buttons */
+  color: #ffffff;
+  /* White text */
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+.recipe-card a:hover {
+  background-color: #f4b75d;
+  /* Orange on hover */
+}
