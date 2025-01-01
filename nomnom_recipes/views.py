@@ -143,3 +143,10 @@ def edit_review(req, review_id):
             return redirect(f'/recipes/{review.recipe.id}')
     else:
         return redirect('/auth/login')
+      
+def all_recipes(req):
+  if req.user.is_authenticated:
+    recpies = Recipe.objects.all()
+    return render(req, 'recpies/all_recpies.html', {'recpies': recpies})
+  else:
+    return redirect('/auth/login')
