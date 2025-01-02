@@ -1,11 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model
-
-from django.db import IntegrityError
 from django.contrib import messages
-
 from .models import Recipe
 from .models import Review
+
 User = get_user_model()
 
 def index(req):
@@ -33,20 +31,20 @@ def add_recipe(req):
         'description': req.POST['description'],
         'ingredients': req.POST['ingredients'],
         'instructions': req.POST['instructions'],
-        'image': req.FILES['image'] 
+        'image': req.FILES['image']
       }
       user = User.objects.get(id=req.user.id)
       errors = Recipe.objects.validate_recipe_data(post_data)
       if len(errors):
           for value in errors.values():
               messages.error(req, value)
-          return redirect('/recipes/add')    
+          return redirect('/recipes/add')
       new_recipe = Recipe(created_by=user, **post_data)
       new_recipe.save()
       return redirect(f'/recipes/my_recipes')
   else:
     return redirect('/auth/login')
-  
+
 def delete_recipe(req, id):
   recipe = Recipe.objects.get(id=id)
   if req.user.is_authenticated:
@@ -62,7 +60,7 @@ def show_recipe(req, id):
     recipe = Recipe.objects.get(id=id)
     reviews = recipe.reviews.all()
     return render(req, 'recipes/show_recipe.html', {'recipe': recipe, 'reviews': reviews})
-  
+
 
 def edit_recipe(req, id):
     recipe = Recipe.objects.get(id=id)
@@ -75,7 +73,7 @@ def edit_recipe(req, id):
         'recipe': recipe.objects.get(id=id)
         }
         return render(req, 'recipes/edit_recipe.html', context)
-    
+
     if req.method == 'POST':
         post_data = {
             'title': req.POST['title'],
@@ -96,7 +94,7 @@ def edit_recipe(req, id):
         return redirect(f'/recipes/{recipe.id}')
     else:
         return redirect('/auth/login')
-      
+
 def add_review(req, id):
     if req.user.is_authenticated:
         recipe = Recipe.objects.get(id=id)
@@ -121,7 +119,7 @@ def add_review(req, id):
         return redirect(f'/recipes/{recipe.id}')
     else:
         return redirect('/auth/login')
-      
+
 def edit_review(req,recipe_id, review_id):
     review = Review.objects.get(id=review_id)
     if req.user.is_authenticated:
@@ -134,7 +132,7 @@ def edit_review(req,recipe_id, review_id):
                 'review': review
             }
             return render(req, 'reviews/edit_review.html', context)
-          
+
         if req.method == 'POST':
             post_data = {
                 'rating': req.POST['rating'],

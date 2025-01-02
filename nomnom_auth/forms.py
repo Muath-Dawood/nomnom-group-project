@@ -22,44 +22,35 @@ class LoginForm(AuthenticationForm):
         # Add bootstrap classes to form fields
         self.fields['username'].widget.attrs.update({
             'class': 'form-control',
-            'placeholder': 'Enter your email',
         })
         self.fields['password'].widget.attrs.update({
             'class': 'form-control',
-            'placeholder': 'Enter your password',
         })
 
 
-class SignupForm(UserCreationForm):
+class RegistrationForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['email'].widget.attrs.update({
             'class': 'form-control',
-            'placeholder': 'Enter your email',
         })
         self.fields['first_name'].widget.attrs.update({
             'class': 'form-control',
-            'placeholder': 'Enter your first name',
         })
         self.fields['last_name'].widget.attrs.update({
             'class': 'form-control',
-            'placeholder': 'Enter your last name',
         })
         self.fields['password1'].widget.attrs.update({
             'class': 'form-control',
-            'placeholder': 'Enter a password',
         })
         self.fields['password2'].widget.attrs.update({
             'class': 'form-control',
-            'placeholder': 'Confirm your password',
         })
         self.fields['address'].widget.attrs.update({
             'class': 'form-control',
-            'placeholder': 'Enter country/city and/or address',
         })
         self.fields['profile_pic'].widget.attrs.update({
             'class': 'form-control',
-            'placeholder': 'Select and upload a pic',
         })
 
     class Meta:

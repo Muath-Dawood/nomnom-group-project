@@ -10,6 +10,9 @@ body {
   font-family: Arial, sans-serif;
 }
 
+.my-bg-color {
+
+}
 /* Hero Section Styling */
 .hero-section {
   background-color: #2a526b;
@@ -282,8 +285,8 @@ body {
   color: #2a526b; /* Blue text */
 }
 
-.form-group input, 
-.form-group textarea, 
+.form-group input,
+.form-group textarea,
 .form-group select {
   width: 100%;
   padding: 10px;
@@ -316,9 +319,6 @@ body {
   font-size: 0.9rem;
   color: #777;
 }
-
-
-
 
 /* show recipe style */
 

@@ -4,7 +4,7 @@ from django.contrib.auth import get_user_model
 from django.urls import reverse_lazy
 from django.shortcuts import redirect
 
-from .forms import LoginForm, SignupForm
+from .forms import LoginForm, RegistrationForm
 
 User = get_user_model()
 
@@ -17,7 +17,7 @@ class LoginView(auth_views.LoginView):
 
 class SignupView(FormView):
     template_name = 'auth/registration.html'
-    form_class = SignupForm
+    form_class = RegistrationForm
     success_url = reverse_lazy('auth_login')
 
     def form_valid(self, form):
