@@ -7,6 +7,17 @@ from .models import Review
 
 User = get_user_model()
 
+def recipe_overview(request):
+    search_term = ''
+
+    if 'search' in request.GET:
+        search_term = request.GET['search']
+        recipe = Recipe.objects.all().filter(feeder__icontains=search_term) 
+
+    recipe = Recipe.objects.all()
+
+    return render(request, 'base.html', {'recipe' : recipe, 'search_term': search_term })
+
 @register.filter(name='split')
 def split(value, key):
     """
