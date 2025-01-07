@@ -4,19 +4,13 @@ from django.contrib import messages
 from django.template.defaulttags import register
 from .models import Recipe
 from .models import Review
+import json
 
 User = get_user_model()
 
-def recipe_overview(request):
-    search_term = ''
-
-    if 'search' in request.GET:
-        search_term = request.GET['search']
-        recipe = Recipe.objects.all().filter(feeder__icontains=search_term) 
-
-    recipe = Recipe.objects.all()
-
-    return render(request, 'base.html', {'recipe' : recipe, 'search_term': search_term })
+def search(req):
+    recipes = Recipe.objects.filter(title__icontains = req.POST['search'])
+    return render(req, 'recipes/search_results.html', {'recipes':recipes})
 
 @register.filter(name='split')
 def split(value, key):

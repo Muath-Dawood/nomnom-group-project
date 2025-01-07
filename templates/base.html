@@ -74,14 +74,12 @@
               >
             </li>
           </ul>
-          <form class="d-flex ms-3">
+          <form method="post" action="/search" class="d-flex ms-3">
             {% csrf_token %}
             <input class="navbar-form-control bg-white text-dark" type="search" placeholder="Search" aria-label="Search" name="search" >
             <button class="navbar-form-control bg-white text-dark ms-2" type="submit">Search</button>
           </form>
-          {% for recipe in recipes %}
-          <a>{{recipe.feeder}} </a> 
-          {% endfor %}
+          
         </div>
       </div>
       {% if user.is_authenticated %}
