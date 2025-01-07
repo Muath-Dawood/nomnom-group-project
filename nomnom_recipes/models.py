@@ -58,7 +58,7 @@ class Recipe(models.Model):
 
         # Retrieve the previous value of profile_pic if the instance exists
         if not is_new_instance:
-            old_instance = Recipe.objects.filter(pk=self.pk).first()
+            old_instance = Recipe.objects.filter(id=self.id).first()
             old_image = old_instance.image if old_instance else None
         else:
             old_image = None
