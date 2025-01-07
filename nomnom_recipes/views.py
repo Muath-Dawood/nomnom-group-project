@@ -4,8 +4,13 @@ from django.contrib import messages
 from django.template.defaulttags import register
 from .models import Recipe
 from .models import Review
+import json
 
 User = get_user_model()
+
+def search(req):
+    recipes = Recipe.objects.filter(title__icontains = req.POST['search'])
+    return render(req, 'recipes/search_results.html', {'recipes':recipes})
 
 @register.filter(name='split')
 def split(value, key):
@@ -65,11 +70,11 @@ def add_recipe(req):
 def delete_recipe(req, id):
   recipe = Recipe.objects.get(id=id)
   if req.user.is_authenticated:
-    if recipe.user.id != req.user.id:
+    if recipe.created_by.id != req.user.id:
         messages.error(req, "YOU CAN NOT DELETE A RECIPE THAT IS NOT YOURS!")
-        return redirect('/recipes/my_recipes')
+        return redirect('/my_recipes')
     recipe.delete()
-    return redirect('/recipes/my_recipes')
+    return redirect('/my_recipes')
   else:
     return redirect('/auth/login')
 
@@ -82,33 +87,33 @@ def show_recipe(req, id):
 def edit_recipe(req, id):
     recipe = Recipe.objects.get(id=id)
     if req.user.is_authenticated:
-        if recipe.user.id != req.user.id:
+        if recipe.created_by.id != req.user.id:
             messages.error(req, "YOU CAN NOT EDIT A RECIPE THAT IS NOT YOURS!")
-        return redirect('recipes/my_recipes')
-    if req.method == 'GET':
-        context = {
-        'recipe': recipe.objects.get(id=id)
-        }
-        return render(req, 'recipes/edit_recipe.html', context)
+            return redirect('/my_recipes')
+        if req.method == 'GET':
+            context = {
+            'recipe': Recipe.objects.get(id=id)
+            }
+            return render(req, 'recipes/edit_recipe.html', context)
 
-    if req.method == 'POST':
-        post_data = {
-            'title': req.POST['title'],
-            'description': req.POST['description'],
-            'ingredients': req.POST['ingredients'],
-            'instructions': req.POST['instructions'],
-            'image': req.FILES['image']
-        }
-        errors = Recipe.objects.validate_recipe_data(post_data)
-        if len(errors):
-            for value in errors.values():
-                messages.error(req, value)
-            return redirect(f'recipes/{recipe.id}/edit')
-        for attr in post_data:
-            if hasattr(recipe, attr):
-                setattr(recipe, attr, post_data[attr])
-        recipe.save()
-        return redirect(f'/recipes/{recipe.id}')
+        if req.method == 'POST':
+            post_data = {
+                'title': req.POST['title'],
+                'description': req.POST['description'],
+                'ingredients': req.POST['ingredients'],
+                'instructions': req.POST['instructions'],
+                'image': req.FILES['image']
+            }
+            errors = Recipe.objects.validate_recipe_data(post_data)
+            if len(errors):
+                for value in errors.values():
+                    messages.error(req, value)
+                return redirect(f'recipes/{recipe.id}/edit')
+            for attr in post_data:
+                if hasattr(recipe, attr):
+                    setattr(recipe, attr, post_data[attr])
+            recipe.save()
+            return redirect(f'/recipes/{recipe.id}')
     else:
         return redirect('/auth/login')
 

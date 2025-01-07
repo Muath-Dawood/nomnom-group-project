@@ -10,6 +10,7 @@
       <h2 class="text-center mb-4">Contact Us</h2>
       <p class="text-center">Have questions or feedback? We'd love to hear from you!</p>
       <form>
+        {% if not user.is_authenticated %}
           <div class="mb-3">
               <label for="name" class="form-label">Full Name</label>
               <input type="text" class="form-control" id="name" placeholder="Enter your full name" required>
@@ -18,11 +19,13 @@
               <label for="email" class="form-label">Email Address</label>
               <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
           </div>
+        {% endif %}
           <div class="mb-3">
               <label for="message" class="form-label">Message</label>
               <textarea class="form-control" id="message" rows="5" placeholder="Type your message here" required></textarea>
           </div>
           <button type="submit" class="btn btn-submit">Send Message</button>
+          
       </form>
   </div>
 {% endblock content %}

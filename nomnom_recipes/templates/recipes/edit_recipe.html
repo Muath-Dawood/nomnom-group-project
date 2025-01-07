@@ -12,7 +12,7 @@
 <!-- Add Recipe Container -->
 <div class="add-recipe-container">
   <h2>Recipe Details</h2>
-  <form action="/recipes/{{ recipe.id }}/" method="post">
+  <form action="/recipes/{{ recipe.id }}/" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <!-- Recipe Name -->
     <div class="add-recipe-form-group">
@@ -35,9 +35,8 @@
         class="add-recipe-form-control"
         name="description"
         id="recipe-description"
-        value="{{ recipe.description }}"
         placeholder="Write a short description of the recipe"
-      ></textarea>
+      >{{ recipe.description }}</textarea>
     </div>
 
     <!-- Ingredients -->
@@ -47,9 +46,8 @@
         class="add-recipe-form-control"
         id="ingredients"
         name="ingredients"
-        value="{{ recipe.ingredients }}"
         placeholder="List ingredients separated by commas"
-      ></textarea>
+      >{{ recipe.ingredients }}</textarea>
     </div>
 
     <!-- Instructions -->
@@ -59,9 +57,8 @@
         class="add-recipe-form-control"
         id="instructions"
         name="instructions"
-        value="{{ recipe.instructions }}"
         placeholder="Describe the cooking steps"
-      ></textarea>
+      >{{ recipe.instructions }}</textarea>
     </div>
 
     <!-- Image Upload -->
