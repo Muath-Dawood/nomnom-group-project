@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %} Search Results {% endblock title %}
+
+{%block content %}
+{% load static %}
+
+<div class="header">
+  <h1 class="fw-bold">Search Results</h1>
+  <p class="fs-3">This Is What We Have For You</p>
+</div>
+
+<div class="recipes-container">
+{% for recipe in recipes %}
+  <div class="recipe-card">
+    <img src="/media/{{ recipe.image.name }}" alt="{{ recipe.title }}" />
+    <div class="content">
+      <h3>{{ recipe.title }}</h3>
+      <p>{{ recipe.description }}</p>
+      <a href="/recipes/{{ recipe.id }}">View Recipe</a>
+    </div>
+  </div>
+{% endfor %}
+</div>
+{% endblock content %}
