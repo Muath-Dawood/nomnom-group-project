@@ -12,7 +12,7 @@
 <!-- Add Recipe Container -->
 <div class="add-recipe-container">
   <h2>Recipe Details</h2>
-  <form action="/recipes/add/" method="post" enctype="multipart/form-data">
+  <form action="/recipes/{{ recipe.id }}/" method="post">
     {% csrf_token %}
     <!-- Recipe Name -->
     <div class="add-recipe-form-group">
@@ -23,6 +23,8 @@
         id="recipe-name"
         name="title"
         placeholder="Enter the recipe name"
+        value="{{ recipe.title }}"
+        required
       />
     </div>
 
@@ -33,6 +35,7 @@
         class="add-recipe-form-control"
         name="description"
         id="recipe-description"
+        value="{{ recipe.description }}"
         placeholder="Write a short description of the recipe"
       ></textarea>
     </div>
@@ -44,6 +47,7 @@
         class="add-recipe-form-control"
         id="ingredients"
         name="ingredients"
+        value="{{ recipe.ingredients }}"
         placeholder="List ingredients separated by commas"
       ></textarea>
     </div>
@@ -55,6 +59,7 @@
         class="add-recipe-form-control"
         id="instructions"
         name="instructions"
+        value="{{ recipe.instructions }}"
         placeholder="Describe the cooking steps"
       ></textarea>
     </div>
@@ -68,17 +73,10 @@
         id="image-upload"
         accept="image/*"
         name="image"
-        required
       />
       <p class="small-text">Max file size: 2MB</p>
     </div>
-    {% if messages %}
-        <ul class="mt-2 text-danger">
-        {% for message in messages %}
-            <li>{{ message }}</li>
-        {% endfor %}
-        </ul>
-    {% endif %}
+
     <!-- Submit Button -->
     <div class="add-recipe-form-group">
       <button type="submit">Submit Recipe</button>

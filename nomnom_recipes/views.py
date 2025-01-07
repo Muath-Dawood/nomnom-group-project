@@ -1,25 +1,42 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model
 from django.contrib import messages
+from django.template.defaulttags import register
 from .models import Recipe
 from .models import Review
 
 User = get_user_model()
 
+@register.filter(name='split')
+def split(value, key):
+    """
+        Returns the value turned into a list.
+    """
+    return value.split(key)
+
 def index(req):
     return render(req,'recipes/home.html')
 
+def my_profile(req):
+    return render(req, 'recipes/my_profile.html')
+
+def contact(req):
+    return render(req, 'recipes/contact_us.html')
+
+def about_us(req):
+    return render(req, 'recipes/about_us.html')
+
 def my_recipes(req):
   if req.user.is_authenticated:
-    recipes = Recipe.objects.filter(user=req.user.id)
+    current_user = User.objects.get(id=req.user.id)
+    recipes = Recipe.objects.filter(created_by=current_user)
     return render(req, 'recipes/my_recipes.html', {'recipes': recipes})
   else:
     return redirect('/')
 
 def all_recipes(req):
-    recpies = Recipe.objects.all()
-    return render(req, 'recpies/all_recpies.html', {'recpies': recpies})
-
+    recipes = Recipe.objects.all()
+    return render(req, 'recipes/all_recipes.html', {'recipes': recipes})
 
 def add_recipe(req):
   if req.user.is_authenticated:
@@ -41,7 +58,7 @@ def add_recipe(req):
           return redirect('/recipes/add')
       new_recipe = Recipe(created_by=user, **post_data)
       new_recipe.save()
-      return redirect(f'/recipes/my_recipes')
+      return redirect('/my_recipes')
   else:
     return redirect('/auth/login')
 
@@ -59,8 +76,8 @@ def delete_recipe(req, id):
 def show_recipe(req, id):
     recipe = Recipe.objects.get(id=id)
     reviews = recipe.reviews.all()
-    return render(req, 'recipes/show_recipe.html', {'recipe': recipe, 'reviews': reviews})
-
+    average_rating = recipe.average_rating()
+    return render(req, 'recipes/show_recipe.html', {'recipe': recipe, 'reviews': reviews, "average_rating": average_rating})
 
 def edit_recipe(req, id):
     recipe = Recipe.objects.get(id=id)

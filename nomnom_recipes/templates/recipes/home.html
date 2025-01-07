@@ -1,25 +1,28 @@
 {% extends "base.html" %}
 
+{% block title %} Home {% endblock title %}
+
 {% block content %}
-
 <!-- Hero Section -->
-<div class="hero-section text-center text-white py-5">
-    <div class="container">
-        <div class="icon-container mb-3">
-            <img src="./pic/nomnomlogopng.jpeg" alt="Logo" class="rounded-circle" style="width: 100px; height: 100px;">
-        </div>
-        <h1 class="display-5">Where Every Bite Tells a Story</h1>
-        <p class="lead">
-            Nom Nom is a recipe-sharing platform where food lovers can discover, share, and create delicious dishes.
-            Whether you're looking for quick meals, healthy options, or unique global flavors, Nom Nom offers a wide
-            variety of recipes to inspire your next culinary adventure. Join our community, explore new tastes, and
-            share your favorite creations with others </p>
-        <button class="btn btn-lg mt-3" style="background-color: #f4b75d; color: #2a526b; font-weight: bold;">Read
-            More</button>
+<div
+  class="hero-section text-center text-white py-5"
+  style="background-color: #2a526b"
+>
+  <div class="hero-container">
+    <div class="icon-container mb-3">
+      {% load static %}
+      <img
+        src="{% static '/images/numNumlogo.png' %}"
+        alt="Logo"
+        class="rounded-circle"
+        style="width: 300px; height: 300px"
+      />
     </div>
+    <h1 class="display-6">Where Every Bite Tells a Story</h1>
+    <p class="lead fs-5">
+      Nom Nom is a recipe-sharing platform for food enthusiasts to discover, create, and share dishes. From quick meals to global flavors, find inspiration for your next culinary adventure and connect with a vibrant community of food lovers
+    </p>
+    <a class="btn btn-lg mt-3 btn-warning" href="/about_us">Read More</a>
+  </div>
 </div>
-
-
-</div>
-
 {% endblock content %}

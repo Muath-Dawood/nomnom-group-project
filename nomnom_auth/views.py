@@ -13,7 +13,7 @@ class LoginView(auth_views.LoginView):
     authentication_form = LoginForm
 
     def get_success_url(self):
-        return reverse_lazy('recipes_my_recipes')
+        return reverse_lazy('recipes_index')
 
 class SignupView(FormView):
     template_name = 'auth/registration.html'

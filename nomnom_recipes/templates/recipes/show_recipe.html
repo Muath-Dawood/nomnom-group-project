@@ -1,71 +1,91 @@
 {% extends "base.html" %}
+{% block title %} {{ recipe.title }} {% endblock title%}
+
 {% block content %}
 
-
-<div class="header">
-    <h1>Recipe Details</h1>
+{% load static %}
+<div class="header-showrecipe">
+  <h2 class="recipe-title-details">Cheesecake</h2>
 </div>
 
-<div class="container">
-    <div class="recipe-header">
-        <img src="./pic/cheesecake.jpg" alt="Recipe Image" class="recipe-image">
-        <h2 class="recipe-title">Cheesecake</h2>
+<div class="show-recipe-container">
+  <div class="row">
+    <div class="col-6">
+      <img
+        src="/media/{{ recipe.image.name }}"
+        alt="Recipe Image"
+        class="recipe-image-details"
+      />
+      <p class="p-dark">Rating: {{ average_rating }} ☆</p>
+      <h3 class="section-title-showrecipe">Description</h3>
+      <p class="recipe-description fs-5">
+        {{ recipe.description }}
+      </p>
     </div>
-
-    <h3 class="section-title">Description</h3>
-    <p class="recipe-description">A rich and creamy dessert made with a buttery biscuit crust and smooth cream cheese filling.</p>
-    
-    <h3 class="section-title">Ingredients</h3>
-    <div class="recipe-ingredients">
+    <div class="col-6">
+      <h3 class="section-title-showrecipe">Ingredients</h3>
+      <div class="recipe-ingredients fs-5">
         <ul>
-            <li>200g digestive biscuits</li>
-            <li>100g butter</li>
-            <li>300g cream cheese</li>
-            <li>100g sugar</li>
-            <li>1 tsp vanilla extract</li>
+          {% with ingredients=recipe.ingredients|split:"," %}
+            {% for ingredient in ingredients %}
+              <li>{{ ingredient }}</li>
+            {% endfor %}
+          {% endwith %}
         </ul>
-    </div>
-
-    <h3 class="section-title">Instructions</h3>
-    <div class="recipe-instructions">
+      </div>
+      <h3 class="section-title-showrecipe">Instructions</h3>
+      <div class="recipe-instructions fs-5">
         <ol>
-            <li>Crush the biscuits and mix with melted butter to form the crust.</li>
-            <li>Press the crust into a pan and chill.</li>
-            <li>Mix cream cheese, sugar, and vanilla until smooth.</li>
-            <li>Pour the mixture over the crust and chill until set.</li>
-            <li>Serve and enjoy!</li>
+          {% with instructions=recipe.instructions|split:"," %}
+            {% for instruction in instructions %}
+              <li>{{ instruction }}</li>
+            {% endfor %}
+          {% endwith %}
+          {% with local_var=context_var %}
+
+          {% endwith %}
         </ol>
+      </div>
     </div>
-
-    <h3 class="section-title">Rate this Recipe</h3>
-    <div class="rating">
-        <span>Your Rating:</span>
-        <input type="radio" name="rating" value="1"> 1
-        <input type="radio" name="rating" value="2"> 2
-        <input type="radio" name="rating" value="3"> 3
-        <input type="radio" name="rating" value="4"> 4
-        <input type="radio" name="rating" value="5"> 5
-    </div>
-
-    <div class="review-section">
-        <h3 class="section-title">Reviews</h3>
-
-        <div class="review">
-            <h4>John Doe</h4>
-            <p>Absolutely delicious! The perfect cheesecake recipe.</p>
-        </div>
-
-        <div class="review">
-            <h4>Jane Smith</h4>
-            <p>Super creamy and easy to make. Highly recommend!</p>
-        </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="review-section">
+        <h3 class="section-title-showrecipe">Reviews</h3>
+        {% for review in reviews %}
+          <div class="review">
+            <h4>{{ review.reviewer.first_name }} {{ review.reviewer.last_name }}</h4>
+            <p>{{ review.comment }}</p>
+            <p>{{ review.rating }}</p>
+          </div>
+        {% endfor %}
 
         <div class="add-review">
-            <h4>Add Your Review:</h4>
-            <textarea placeholder="Write your review here..." rows="4"></textarea>
-            <button>Submit Review</button>
+          <h4 class="fw-bold">Add Your Review</h4>
+          <form action="/recipes/{{ recipe.id }}/reviews/add/" method="post">
+            {% csrf_token %}
+            <textarea placeholder="Write your review here..." rows="4" name="comment"></textarea>
+            <div class="d-flex justify-content-center mt-5">
+              <div class="text-center mb-5">
+                <div class="rating">
+                  <input type="radio" name="rating" value="5" id="5" />
+                  <label for="5">☆</label>
+                  <input type="radio" name="rating" value="4" id="4" />
+                  <label for="4">☆</label>
+                  <input type="radio" name="rating" value="3" id="3" />
+                  <label for="3">☆</label>
+                  <input type="radio" name="rating" value="2" id="2" />
+                  <label for="2">☆</label>
+                  <input type="radio" name="rating" value="1" id="1" />
+                  <label for="1">☆</label>
+                </div>
+              </div>
+            </div>
+            <button type="submit">Submit Review</button>
+          </form>
         </div>
+      </div>
     </div>
+  </div>
 </div>
-
 {% endblock content %}

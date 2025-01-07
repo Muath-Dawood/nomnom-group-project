@@ -7,6 +7,9 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     {% load static %}
     <link rel="stylesheet" href="{% static 'styles/main.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <title>NomNom - SignUp</title>
 </head>
 <body>
@@ -16,7 +19,9 @@
             {% csrf_token %}
             {% for field in form %}
                 <div class="mb-3">
-                    {{ field.label }}
+                    <label for="{{ field.auto_id }}" class="form-label">
+                        {{ field.label }}
+                    </label>
                     {{ field }}
 
                     {% if field.errors %}
@@ -31,7 +36,7 @@
             <button type="submit" class="btn btn-register">Register</button>
         </form>
         <div class="text-center mt-3">
-            <p>Already have an account? <a href="{% url 'auth_login' %}" class="text-link">Login here</a></p>
+            <p>Already have an account? <a href="{% url 'auth_login' %}" class="text-link register-text-link">Login here</a></p>
         </div>
     </div>
 

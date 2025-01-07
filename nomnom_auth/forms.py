@@ -21,10 +21,10 @@ class LoginForm(AuthenticationForm):
         super().__init__(*args, **kwargs)
         # Add bootstrap classes to form fields
         self.fields['username'].widget.attrs.update({
-            'class': 'form-control',
+            'class': 'form-control login-form-control',
         })
         self.fields['password'].widget.attrs.update({
-            'class': 'form-control',
+            'class': 'form-control login-form-control',
         })
 
 
@@ -32,25 +32,25 @@ class RegistrationForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['email'].widget.attrs.update({
-            'class': 'form-control',
+            'class': 'form-control register-form-control',
         })
         self.fields['first_name'].widget.attrs.update({
-            'class': 'form-control',
+            'class': 'form-control register-form-control',
         })
         self.fields['last_name'].widget.attrs.update({
-            'class': 'form-control',
+            'class': 'form-control register-form-control',
         })
         self.fields['password1'].widget.attrs.update({
-            'class': 'form-control',
+            'class': 'form-control register-form-control',
         })
         self.fields['password2'].widget.attrs.update({
-            'class': 'form-control',
+            'class': 'form-control register-form-control',
         })
         self.fields['address'].widget.attrs.update({
-            'class': 'form-control',
+            'class': 'form-control register-form-control',
         })
         self.fields['profile_pic'].widget.attrs.update({
-            'class': 'form-control',
+            'class': 'form-control register-form-control',
         })
 
     class Meta:

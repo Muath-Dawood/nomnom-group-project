@@ -1,44 +1,17 @@
-{% extends "base.html" %}
-{% block content %}
+{% extends "base.html" %} {% block title %} {{ user.first_name }} {{
+user.last_name }} Profile {% endblock title %} {% block content %}
+<div class="header-profile">
+  <h1>My Profile</h1>
+</div>
 
-<div class="container">
-    <!-- Profile Header -->
-    <div class="profile-header">
-        <img src="profile-pic.jpg" alt="Profile Picture">
-        <h2>John Doe</h2>
-        <p>Food enthusiast | Home chef | Recipe creator</p>
-    </div>
-
-    <!-- Profile Information -->
-    <h3 class="section-title">Edit Profile</h3>
-    <div class="profile-info">
-        <label for="name">Name:</label>
-        <input type="text" id="name" value="John Doe">
-
-        <label for="email">Email:</label>
-        <input type="email" id="email" value="johndoe@example.com">
-
-        <label for="bio">Bio:</label>
-        <textarea id="bio" rows="4">Food enthusiast who loves experimenting with new recipes!</textarea>
-
-        <button>Save Changes</button>
-    </div>
-    <!-- Recipe List -->
-    <h3 class="section-title">My Recipes</h3>
-    <div class="recipe-list">
-        <div class="recipe-item">
-            <h4>Cheesecake</h4>
-            <a href="show-recipe.html">View</a>
-        </div>
-        <div class="recipe-item">
-            <h4>Spaghetti Bolognese</h4>
-            <a href="show-recipe.html">View</a>
-        </div>
-        <div class="recipe-item">
-            <h4>Italian Pizza</h4>
-            <a href="show-recipe.html">View</a>
-        </div>
-    </div>
-
-
-    {% endblock content %}
+<div class="profile-container">
+  <!-- Profile Header -->
+  <div class="profile-header">
+    <img src="/media/{{ user.profile_pic.name }}" alt="Profile Picture" />
+    <h2>{{ user.first_name }} {{ user.last_name }}</h2>
+    <p>{{ user.email }}</p>
+    <p>{{ user.address }}</p>
+  </div>
+  <a href="recipes/my_recipes/">Back to my recipes</a>
+</div>
+{% endblock content %}

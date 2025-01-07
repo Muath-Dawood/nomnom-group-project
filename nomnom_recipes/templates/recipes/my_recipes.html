@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %} My Recipes {% endblock title %}
+
+{% block content %}
+{% load static %}
+<a href="/recipes/add/" id="add-recipe-btn">Add Recipe</a>
+<div class="header">
+  <h1 class="fw-bold">My Recipes</h1>
+  <p class="fs-3">Your delicious creations are here</p>
+</div>
+
+<div class="my-recipes-container">
+  {% for recipe in recipes %}
+  <div class="my-recipe-card">
+    <img
+      src="/media/{{ recipe.image.name }}"
+      alt="recipe image"
+      class="recipe-image"
+    />
+    <div class="my-recipe-content">
+      <h3>{{ recipe.title }}</h3>
+      <p>{{ recipe.description }}</p>
+      <div class="my-buttons">
+        <a href="/recipes/{{ recipe.id }}">Show</a>
+        <a href="/recipes/{{ recipe.id }}/edit">Edit</a>
+        <a href="/recipes/{{ recipe.id }}/delete">Delete</a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+
+</div>
+{% endblock content %}
