@@ -21,45 +21,36 @@ class LoginForm(AuthenticationForm):
         super().__init__(*args, **kwargs)
         # Add bootstrap classes to form fields
         self.fields['username'].widget.attrs.update({
-            'class': 'form-control',
-            'placeholder': 'Enter your email',
+            'class': 'form-control login-form-control',
         })
         self.fields['password'].widget.attrs.update({
-            'class': 'form-control',
-            'placeholder': 'Enter your password',
+            'class': 'form-control login-form-control',
         })
 
 
-class SignupForm(UserCreationForm):
+class RegistrationForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['email'].widget.attrs.update({
-            'class': 'form-control',
-            'placeholder': 'Enter your email',
+            'class': 'form-control register-form-control',
         })
         self.fields['first_name'].widget.attrs.update({
-            'class': 'form-control',
-            'placeholder': 'Enter your first name',
+            'class': 'form-control register-form-control',
         })
         self.fields['last_name'].widget.attrs.update({
-            'class': 'form-control',
-            'placeholder': 'Enter your last name',
+            'class': 'form-control register-form-control',
         })
         self.fields['password1'].widget.attrs.update({
-            'class': 'form-control',
-            'placeholder': 'Enter a password',
+            'class': 'form-control register-form-control',
         })
         self.fields['password2'].widget.attrs.update({
-            'class': 'form-control',
-            'placeholder': 'Confirm your password',
+            'class': 'form-control register-form-control',
         })
         self.fields['address'].widget.attrs.update({
-            'class': 'form-control',
-            'placeholder': 'Enter country/city and/or address',
+            'class': 'form-control register-form-control',
         })
         self.fields['profile_pic'].widget.attrs.update({
-            'class': 'form-control',
-            'placeholder': 'Select and upload a pic',
+            'class': 'form-control register-form-control',
         })
 
     class Meta:
